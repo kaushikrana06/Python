@@ -174,7 +174,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/flask-service/dev/1705775123547-2024-01-20T18:25:23.547Z/flask-service.zip"
+                "S3Key": "serverless/flask-service/dev/1705778013881-2024-01-20T19:13:33.881Z/flask-service.zip"
               },
               "Handler": "wsgi_handler.handler",
               "Runtime": "python3.12",
@@ -192,14 +192,14 @@
               "AppLogGroup"
             ]
           },
-          "AppLambdaVersiontBaVHRA1wKYewWnutCnDbzkqzMBwtefZ3czUEMHtc": {
+          "AppLambdaVersion5GRO34LOhBLqhdp9vK5QJvyE8c6oAKfH3xZoR9LYDc": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "Acv/QPgD29JBwQdGHuBw0BD8D5L7zBxq+fntp7aecsc="
+              "CodeSha256": "7ylxAKPWYBUoAcre0qAjdaa1tP+MISMgvjW7p+tQYVA="
             }
           },
           "ApiGatewayRestApi": {
@@ -212,21 +212,6 @@
                 ]
               },
               "Policy": ""
-            }
-          },
-          "ApiGatewayResourceSearch": {
-            "Type": "AWS::ApiGateway::Resource",
-            "Properties": {
-              "ParentId": {
-                "Fn::GetAtt": [
-                  "ApiGatewayRestApi",
-                  "RootResourceId"
-                ]
-              },
-              "PathPart": "search",
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
             }
           },
           "ApiGatewayResourceProxyVar": {
@@ -244,13 +229,16 @@
               }
             }
           },
-          "ApiGatewayMethodSearchGet": {
+          "ApiGatewayMethodGet": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "HttpMethod": "GET",
               "RequestParameters": {},
               "ResourceId": {
-                "Ref": "ApiGatewayResourceSearch"
+                "Fn::GetAtt": [
+                  "ApiGatewayRestApi",
+                  "RootResourceId"
+                ]
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -336,7 +324,7 @@
               "AppLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1705775119522": {
+          "ApiGatewayDeployment1705777994937": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -345,7 +333,7 @@
               "StageName": "dev"
             },
             "DependsOn": [
-              "ApiGatewayMethodSearchGet",
+              "ApiGatewayMethodGet",
               "ApiGatewayMethodProxyVarAny"
             ]
           },
@@ -399,7 +387,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersiontBaVHRA1wKYewWnutCnDbzkqzMBwtefZ3czUEMHtc"
+              "Ref": "AppLambdaVersion5GRO34LOhBLqhdp9vK5QJvyE8c6oAKfH3xZoR9LYDc"
             },
             "Export": {
               "Name": "sls-flask-service-dev-AppLambdaFunctionQualifiedArn"
@@ -523,7 +511,7 @@
         "packRequirements": false
       },
       "pythonRequirements": {
-        "dockerizePip": "non-linux"
+        "dockerizePip": true
       }
     },
     "plugins": [
@@ -537,7 +525,7 @@
         "events": [
           {
             "http": {
-              "path": "search",
+              "path": "",
               "method": "get",
               "integration": "AWS_PROXY"
             }
@@ -556,7 +544,7 @@
         "timeout": 6,
         "runtime": "python3.12",
         "vpc": {},
-        "versionLogicalId": "AppLambdaVersiontBaVHRA1wKYewWnutCnDbzkqzMBwtefZ3czUEMHtc"
+        "versionLogicalId": "AppLambdaVersion5GRO34LOhBLqhdp9vK5QJvyE8c6oAKfH3xZoR9LYDc"
       }
     },
     "configValidationMode": "warn",
@@ -581,7 +569,7 @@
     "artifact": "C:\\Users\\kaush\\Documents\\new\\venv\\.serverless\\flask-service.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/flask-service/dev/1705775123547-2024-01-20T18:25:23.547Z",
+    "artifactDirectoryName": "serverless/flask-service/dev/1705778013881-2024-01-20T19:13:33.881Z",
     "artifact": "flask-service.zip"
   }
 }
