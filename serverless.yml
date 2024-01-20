@@ -2,7 +2,7 @@ service: flask-service
 
 provider:
   name: aws
-  runtime: python3.8
+  runtime: python3.12.1
   stage: dev
   region: us-east-1
 
