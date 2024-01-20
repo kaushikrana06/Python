@@ -2,16 +2,16 @@ service: flask-service
 
 provider:
   name: aws
-  runtime: python3.12.1
+  runtime: python3.12
   stage: dev
   region: us-east-1
 
 functions:
   app:
-    handler: wsgi_handler.handler
+    handler: wsgi.handler
     events:
       - http:
-          path: /
+          path: /search
           method: get
       - http:
           path: /{proxy+}
